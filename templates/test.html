@@ -1,0 +1,636 @@
+<!--
+   Documento creado y mantenido por Maximo Ocaña
+   Fecha: 07/2024
+   Propósito: Este documento forma parte de un proyecto web.
+   Descripción: V1 TEA detection. 
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test CARS</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <center><h2>Bienvenido al Test CARS</h2></center>
+      <p>Por favor, gire su dispositivo móvil al modo horizontal para una mejor experiencia.</p>
+      <center><h2>Instrucciones para el test</h2></center>
+      <p>1. El test consta de 15 áreas.</p>
+      <p>2. Debe marcar la opción que describa mejor el rendimiento de su hijo en esa área.</p>
+      <p>3. Si cree que la mejor descripción de su hijo está entre dos puntuaciones, marque la puntuación intermedia.</p>
+      <center><button class=" btn button" onclick="closeModal()">Entendido</button></center>
+    </div>
+  </div>
+
+  <div class="container modal-content">
+    <h2>Test CARS</h2>
+    <form action="{{ url_for('test') }}" method="post">
+      <div class="question">
+        <label for="score1">1. Relación con personas:</label>
+        <!-- <input type="number" id="score1" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score1" name="score1" value="1" required>
+              <label>Relaciones sociales típicas para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score1" name="score1" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score1" name="score1" value="2" required>
+              <label>Se relaciona de manera limitada, pero apropiada, con las personas.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score1" name="score1" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score1" name="score1" value="3" required>
+              <label>Presenta dificultades significativas en las relaciones sociales.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score1" name="score1" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score1" name="score1" value="4" required>
+              <label>Ausencia de relaciones sociales.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score2">2. Imitación:</label>
+        <!-- <input type="number" id="score2" name="score" min="1" max="4" required> -->
+
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score2" name="score2" value="1" required>
+              <label>Imita adecuadamente acciones.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score2" name="score2" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score2" name="score2" value="2" required>
+              <label>Imita con dificultad.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score2" name="score2" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score2" name="score2" value="3" required>
+              <label>Imita mínimamente o no imita.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score2" name="score2" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score2" name="score2" value="4" required>
+              <label>Ausencia de imitación.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score3">3. Respuesta emocional:</label>
+         <!-- <input type="number" id="score3" name="score" min="1" max="4" required> -->
+
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score3" name="score3" value="1" required>
+              <label>Respuesta emocional apropiada.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score3" name="score3" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score3" name="score3" value="2" required>
+              <label>Respuesta emocional limitada o inusual.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score3" name="score3" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score3" name="score3" value="3" required>
+              <label>Respuesta emocional inapropiada o inusual.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score3" name="score3" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score3" name="score3" value="4" required>
+              <label>Ausencia de respuesta emocional.</label>
+          </li>
+        </ul> 
+      </div>
+
+      <div class="question">
+        <label for="score4">4. Uso del cuerpo:</label>
+        <!-- <input type="number" id="score4" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score4" name="score4" value="1" required>
+              <label>Uso típico del cuerpo y movimientos.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score4" name="score4" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score4" name="score4" value="2" required>
+              <label>Movimientos o posturas inusuales.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score4" name="score4" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score4" name="score4" value="3" required>
+              <label>Movimientos o posturas repetitivas.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score4" name="score4" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score4" name="score4" value="4" required>
+              <label>Movimientos estereotipados o ausencia de movimientos.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score5">5. Uso de objetos:</label>
+        <!-- <input type="number" id="score5" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score5" name="score5" value="1" required>
+              <label>Intereses típicos para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score5" name="score5" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score5" name="score5" value="2" required>
+              <label>Intereses limitados o inusuales.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score5" name="score5" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score5" name="score5" value="3" required>
+              <label>Intereses muy limitados o focalizados.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score5" name="score5" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score5" name="score5" value="4" required>
+              <label>Obsesión con un interés específico.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score6">6. Adaptación a cambios:</label>
+        <!-- <input type="number" id="score6" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score6" name="score6" value="1" required>
+              <label>Capacidad adecuada para adaptarse a cambios.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score6" name="score6" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score6" name="score6" value="2" required>
+              <label>Dificultades moderadas para adaptarse a cambios.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score6" name="score6" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score6" name="score6" value="3" required>
+              <label>Dificultades significativas para adaptarse a cambios.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score6" name="score6" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score6" name="score6" value="4" required>
+              <label>Resistencia extrema a cambios.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score7">7. Respuesta visual:</label>
+        <!-- <input type="number" id="score7" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score7" name="score7" value="1" required>
+              <label>Responde adecuadamente a estímulos auditivos.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score7" name="score7" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score7" name="score7" value="2" required>
+              <label>Hipersensibilidad o hiposensibilidad a estímulos auditivos.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score7" name="score7" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score7" name="score7" value="3" required>
+              <label>Respuestas inusuales o inapropiadas a estímulos auditivos.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score7" name="score7" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score7" name="score7" value="4" required>
+              <label>Ausencia de respuesta a estímulos auditivos.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score8">8. Respuesta auditiva:</label>
+        <!-- <input type="number" id="score8" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score8" name="score8" value="1" required>
+              <label>Utiliza objetos de manera típica para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score8" name="score8" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score8" name="score8" value="2" required>
+              <label>Uso limitado o inusual de objetos.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score8" name="score8" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score8" name="score8" value="3" required>
+              <label>Utiliza objetos de manera repetitiva o inapropiada.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score8" name="score8" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score8" name="score8" value="4" required>
+              <label>No utiliza objetos de manera funcional.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score9">9. Respuesta a la comunicación:</label>
+        <!-- <input type="number" id="score9" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score9" name="score9" value="1" required>
+              <label>Comprende instrucciones verbales apropiadas para su nivel de desarrollo.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score9" name="score9" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score9" name="score9" value="2" required>
+              <label>Dificultades moderadas para comprender instrucciones verbales.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score9" name="score9" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score9" name="score9" value="3" required>
+              <label>Dificultades significativas para comprender instrucciones verbales.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score9" name="score9" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score9" name="score9" value="4" required>
+              <label>Ausencia de comprensión verbal.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score10">10. Uso del gusto, olfato y tacto:</label>
+        <!-- <input type="number" id="score10" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score10" name="score10" value="1" required>
+              <label>Responde adecuadamente a estímulos visuales.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score10" name="score10" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score10" name="score10" value="2" required>
+              <label>Hipersensibilidad o hiposensibilidad a estímulos visuales.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score10" name="score10" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score10" name="score10" value="3" required>
+              <label>Respuestas inusuales o inapropiadas a estímulos visuales.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score10" name="score10" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score10" name="score10" value="4" required>
+              <label>Ausencia de respuesta a estímulos visuales.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score11">11. Miedo o nerviosismo:</label>
+        <!-- <input type="number" id="score11" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score11" name="score11" value="1" required>
+              <label>Nivel de actividad típico para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score11" name="score11" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score11" name="score11" value="2" required>
+              <label>Actividad excesiva o inusualmente baja.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score11" name="score11" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score11" name="score11" value="3" required>
+              <label>Hiperactividad o hiporreactividad.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score11" name="score11" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score11" name="score11" value="4" required>
+              <label>Ausencia de actividad motora.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score12">12. Comunicación verbal:</label>
+        <!-- <input type="number" id="score12" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score12" name="score12" value="1" required>
+              <label>Ansiedad típica para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score12" name="score12" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score12" name="score12" value="2" required>
+              <label>Ansiedad moderada.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score12" name="score12" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score12" name="score12" value="3" required>
+              <label>Ansiedad significativa.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score12" name="score12" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score12" name="score12" value="4" required>
+              <label>Ansiedad extrema o ausencia de ansiedad.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score13">13. Comunicación no verbal:</label>
+        <!-- <input type="number" id="score13" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score13" name="score13" value="1" required>
+              <label>Interacción social adecuada.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score13" name="score13" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score13" name="score13" value="2" required>
+              <label>Respuesta limitada o inusual a personas.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score13" name="score13" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score13" name="score13" value="3" required>
+              <label>Respuestas inusuales o inapropiadas a personas.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score13" name="score13" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score13" name="score13" value="4" required>
+              <label>Ausencia de respuesta a personas.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score14">14. Nivel de actividad:</label>
+        <!-- <input type="number" id="score14" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score14" name="score14" value="1" required>
+              <label>Funcionamiento intelectual típico para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score14" name="score14" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score14" name="score14" value="2" required>
+              <label>Rendimiento intelectual por debajo de lo esperado.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score14" name="score14" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score14" name="score14" value="3" required>
+              <label>Discapacidad intelectual leve o moderada.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score14" name="score14" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score14" name="score14" value="4" required>
+              <label>Discapacidad intelectual grave o profunda.</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="question">
+        <label for="score15">15. Nivel y consistencia de respuesta:</label>
+        <!-- <input type="number" id="score15" name="score" min="1" max="4" required> -->
+        <ul class="likert">
+          <li>
+              <label>1</label>
+              <input type="radio" id="score15" name="score15" value="1" required>
+              <label>Habla de manera típica para la edad.</label>
+          </li>
+          <li>
+              <label>1.5</label>
+              <input type="radio" id="score15" name="score15" value="1.5" required>
+          </li>
+          <li>
+              <label>2</label>
+              <input type="radio" id="score15" name="score15" value="2" required>
+              <label>Habla limitada o inusual.</label>
+          </li>
+          <li>
+              <label>2.5</label>
+              <input type="radio" id="score15" name="score15" value="2.5" required>
+          </li>
+          <li>
+              <label>3</label>
+              <input type="radio" id="score15" name="score15" value="3" required>
+              <label>Habla mínima o ausencia de habla.</label>
+          </li>
+          <li>
+              <label>3.5</label>
+              <input type="radio" id="score15" name="score15" value="3.5" required>
+          </li>
+          <li>
+              <label>4</label>
+              <input type="radio" id="score15" name="score15" value="4" required>
+              <label>Habla inapropiada o estereotipada.</label>
+          </li>
+        </ul>
+      </div>
+
+      <button type="submit" class="button">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    
+    window.onload = function() {
+      document.getElementById('modal').style.display = 'block';
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!--
+   Documento creado y mantenido por Maximo Ocaña
+   Fecha: 07/2024
+   Propósito: Este documento forma parte de un proyecto web.
+   Descripción: V1 TEA detection. 
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sube una imagen</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Sube una imagen</h2>
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+      <label for="fileInput" class="upload-icon">
+        <i class="fas fa-camera"></i>
+      </label>
+      <input type="file" id="fileInput" name="file" accept="image/*" onchange="previewImage(event)">
+      <img id="previewImage" src="" alt="Vista previa de la imagen" class="preview">
+      
+      <div class="terms">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">Acepto los términos y condiciones</label>
+      </div>
+
+      <center><button type="submit" id="continueButton" class="btn">Continuar</button></center>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

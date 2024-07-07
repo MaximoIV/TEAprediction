@@ -1,0 +1,30 @@
+<!--
+   Documento creado y mantenido por Maximo Ocaña
+   Fecha: 07/2024
+   Propósito: Este documento forma parte de un proyecto web.
+   Descripción: V1 TEA detection. 
+-->
+   
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realizar Test CARS</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>¿Desea realizar el test CARS?</h2>
+    <form action="{{ url_for('ask_test') }}" method="post">
+      <div class="radio-group">
+        <input type="radio" id="yes" name="consent" value="yes" required>
+        <label for="yes">Sí</label><br>
+        <input type="radio" id="no" name="consent" value="no" required>
+        <label for="no">No</label>
+      </div>
+      <button type="submit" class="btn button">Continuar</button>
+    </form>
+  </div>
+</body>
+</html>
