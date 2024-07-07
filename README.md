@@ -1,4 +1,4 @@
-[README.txt](https://github.com/user-attachments/files/16120325/README.txt)[Uploading READ
+
 ## Ejecución
 
 1. Inicia la aplicación:
