@@ -21,7 +21,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Cargar el modelo
-model_path = 'model\inception_model.h5'
+model_path = 'uploadYourModelexample:"model\predictive_model.h5'
 model = load_model(model_path)
 
 def allowed_file(filename):
