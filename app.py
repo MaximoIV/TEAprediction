@@ -13,7 +13,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+app.secret_key = 'changePassword'
 
 # Configuraciones
 UPLOAD_FOLDER = 'uploads'
