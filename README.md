@@ -39,7 +39,6 @@ Este archivo contiene la lógica principal de la aplicación. A continuación se
 ## Notas Adicionales
 
 - Asegúrate de tener un modelo predictivo entrenado y disponible si deseas utilizar la funcionalidad de predicción basada en imágenes.
-- El proyecto incluye una pantalla de carga que se muestra durante 3 segundos después de que el usuario sube una imagen y antes de ser redirigido al Test CARS.
 
 ## Contribuciones
 
