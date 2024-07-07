@@ -50,4 +50,4 @@ Las contribuciones son bienvenidas. Por favor, realiza un fork del proyecto y en
    Fecha: 07/2024
    Propósito: Este documento forma parte de un proyecto web.
    Descripción: V1 TEA detection. 
-ME.txt…]()
+
